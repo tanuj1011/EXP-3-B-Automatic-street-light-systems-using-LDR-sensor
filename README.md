@@ -1,32 +1,38 @@
 # EXP-3-B-Automatic-street-light-systems-using-LDR-sensor
-
 ## Aim: 
+To design and simulate an automatic street light system using Arduino and LDR sensor that controls lights based on ambient light levels.
 
 ## Hardware / Software Tools required:
-
-	PC/ Laptop with Internet connection
-	Tinker CAD tool (Online)
-	Arduino UNO 
-	Board/ESP-32
-	Photoresistor
+	
+PC/ Laptop with Internet connection
+	
+Tinker CAD tool (Online)
+	
+Arduino UNO 
+	
+Board/ESP-32
+	
+Photoresistor
   
 ## Circuit Diagram:
+<img width="996" height="637" alt="image" src="https://github.com/user-attachments/assets/5297c022-2527-4b70-a541-44d7f12ac3a7" />
 
 
 ## Theory :
-
- The Arduino Uno is powered by the ATmega328P, an 8-bit microcontroller that runs at 16 MHz. It has 32 KB of flash memory, 2 KB of SRAM, and 1 KB of EEPROM. The board has 14 digital I/O pins (of which 6 can be used as PWM outputs) and 6 analog input pins. These pins allow the board to interface with various sensors, actuators, and other devices.The Arduino Uno can be powered via a USB connection or an external power supply. The board has a built-in voltage regulator to manage power from 7 to 12 volts.
-The board is programmable using the Arduino IDE (Integrated Development Environment), which supports a simplified version of C/C++. The code, known as a "sketch," is uploaded to the board via a USB connection. The Uno has a USB-B port, which is used for communication with a computer. The USB connection also powers the board when connected. The board includes a reset button that restarts the microcontroller, useful during programming and troubleshooting. The In-Circuit Serial Programming (ICSP) header allows for low-level programming of the microcontroller or firmware updates. The Uno has a built-in LED on pin 13, commonly used for simple tests and debugging.
+The Arduino Uno is powered by the ATmega328P, an 8-bit microcontroller that runs at 16 MHz. It has 32 KB of flash memory, 2 KB of SRAM, and 1 KB of EEPROM. The board has 14 digital I/O pins (of which 6 can be used as PWM outputs) and 6 analog input pins. These pins allow the board to interface with various sensors, actuators, and other devices.The Arduino Uno can be powered via a USB connection or an external power supply. The board has a built-in voltage regulator to manage power from 7 to 12 volts.
+The board is programmable using the Arduino IDE (Integrated Development Environment), which supports a simplified version of C/C++. The code, known as a "sketch," is uploaded to the board via a USB connection. The Uno has a USB-B port, which is used for communication with a computer. The USB connection also powers the board when connected. The board includes a reset button that restarts the microcontroller, useful during programming and troubleshooting. The In-Circuit Serial Programming (ICSP) header allows
+for low-level programming of the microcontroller or firmware updates. The Uno has a built-in LED on pin 13, commonly used for simple tests and debugging.
 
 ## Procedure:
-
 ### Step 1: 
-	Set Up the Tinkercad Environment
+	
+Set Up the Tinkercad Environment
 •	Log in to Tinkercad: Open Tinkercad in your web browser and log in to your account.
 •	Create a New Circuit: In the Tinkercad dashboard, click on "Circuits" and then select "Create New Circuit."
-### Step 2: 
 
-	Add Components to the Circuit
+### Step 2: 
+	
+Add Components to the Circuit
 •	Arduino Uno: Drag an Arduino Uno board from the components panel onto the workspace.
 •	LDR Sensor: Search for the Photoresistor in the components panel and drag it into the workspace.
 •	Breadboard: Drag a small breadboard to the workspace to help with wiring connections.
@@ -34,7 +40,8 @@ The board is programmable using the Arduino IDE (Integrated Development Environm
 •	Wires: Use wires to connect the components.
 
 ### Step 3: 
-	Connect the LDR Sensor to the Arduino
+	
+Connect the LDR Sensor to the Arduino
 •	LDR Sensor Pins: The LDR has two terminals (pins).
 •	One LDR Pin to 5V: Connect one terminal of the LDR to the Arduino 5V pin.
 •	Other LDR Pin to Analog Input and Resistor:
@@ -46,13 +53,11 @@ o	Place the LDR and resistor on the breadboard forming a voltage divider between
 o	The middle point (between LDR and resistor) connects to the Arduino analog input pin.
 
 ### Step 4: Write the Arduino Code
-
 •	Code Editor: Click on the "Code" button at the top of the Tinkercad workspace to open the code editor.
 •	Set the Coding Mode: Ensure the editor is in "Text" mode to write your code in C/C++.
-•	Enter the Code: Write the following code from the photoresistor
+•	Enter the Code: Write the following code from the photoresistor.
 
 ### Step 5: Simulate the Circuit
-
 •	Start Simulation: Click the "Start Simulation" button at the top of the workspace to run the circuit and code.
 •	Monitor Output: Open the serial monitor by clicking the "Serial Monitor" button to view the temperature readings in both Celsius and Fahrenheit.
 
@@ -63,13 +68,36 @@ o	The middle point (between LDR and resistor) connects to the Arduino analog inp
 ### Step 7: Save Your Work
 •	Stop Simulation: Click "Stop Simulation" to end the simulation.
 •	Save the Circuit: Click "Save" to keep your circuit design and code for future use.
-
 ## Code:
-
-
-
+```cpp
+const int LEDPin=13;
+const int LDRPin=A0;
+void setup()
+{
+ Serial.begin(9600);
+ pinMode(LEDPin,OUTPUT);
+ pinMode(LDRPin,INPUT);
+}
+void loop()
+{
+ int LDRStatus=analogRead(LDRPin);
+ if(LDRStatus<=500)
+ {
+ digitalWrite(LEDPin,HIGH);
+ Serial.print("Current Light Intensity Value is -");
+ Serial.println(LDRStatus);
+ }
+ else
+ {
+ digitalWrite(LEDPin, LOW);
+ Serial.print("Current Light Intensity Value is -");
+ Serial.println(LDRStatus);
+ }
+}  
+```
 ## Output:
+<img width="946" height="668" alt="image" src="https://github.com/user-attachments/assets/71c0ed15-4b1b-4bc1-bacf-75aaa4d1c85f" />
+
  
-
-
 ## Result:
+The automatic street light system successfully turned ON in darkness and turned OFF in bright light conditions, functioning as expected.
